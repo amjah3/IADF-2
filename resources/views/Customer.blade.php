@@ -60,4 +60,32 @@ h6 {
     <h1>Welcome to My Profile</h1>
     <p>This is a brief introduction about me.</p>
 </div> -->
+
+<form action="{{ route('customers.filter') }}" method="GET" class="mb-4">
+    <div class="row">
+        <!-- Gender Filter -->
+        <div class="col-md-4">
+            <label for="gender" class="form-label">Gender</label>
+            <select name="gender" id="gender" class="form-select">
+                <option value="">-- Select Gender --</option>
+                <option value="male" {{ request('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                <option value="female" {{ request('gender') == 'female' ? 'selected' : '' }}>Female</option>
+            </select>            
+        </div>
+
+        <!-- Birthday Filter -->
+        <div class="col-md-4">
+            <label for="birth_date" class="form-label">Birth Year</label>
+            <select name="birth_date" id="birth_date" class="form-select">
+                <option value="">-- Select Birth Year Filter --</option>
+                <option value="after_2000">After 2000</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-md-4 align-self-end">
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+    </div>
+</form>
 @endsection

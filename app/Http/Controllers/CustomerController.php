@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
 
@@ -25,7 +26,11 @@ class CustomerController extends Controller
         $query->where('gender', $request->gender);
     }
 
-    $data = $query->get();
+    if ($request->has('birth_date') && $request->birth_date === 'after_2000') {
+        $query->whereYear('birth_date', '>', 2000);
+    }
+
+    $data = $query->paginate(10)->appends($request->all());
     return view('Customer', compact('data'));
 }
 
