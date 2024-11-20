@@ -54,6 +54,7 @@ h6 {
 
 <div>
     {{ $data->links() }}
+    {{-- {{ $data->onEachSide(1)->links() }} --}}
 </div>
 <!-- <div class="jumbotron text-center">
     <h1>Welcome to My Profile</h1>
